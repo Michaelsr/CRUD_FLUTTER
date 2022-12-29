@@ -38,10 +38,15 @@ class SQLHelper {
 
   // Create new item (journal)
   static Future<int> createItem(
-      String nombre, String? tipo, String? detalle, String? valor) async {
+      String nombre, String tipo, String detalle, String valor) async {
     final db = await SQLHelper.db();
 
-    final data = {'nombre': nombre, 'detalle': detalle, 'valor': valor};
+    final data = {
+      'nombre': nombre,
+      'tipo': tipo,
+      'detalle': detalle,
+      'valor': valor,
+    };
     final id = await db.insert('boleta', data,
         conflictAlgorithm: sql.ConflictAlgorithm.replace);
     return id;

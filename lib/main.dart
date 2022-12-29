@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      initialRoute: 'menu',
+      initialRoute: 'boleta',
       routes: {
         'login': (context) => const LoginPages(),
         'menu': (context) => const MenuPages(),
