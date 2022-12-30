@@ -17,13 +17,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      initialRoute: 'boleta',
+      initialRoute: 'login',
       routes: {
         'login': (context) => const LoginPages(),
         'menu': (context) => const MenuPages(),
         'boleta': (context) => const BoletaPages(),
         'tratamiento': (context) => const TratamientoPages(),
       },
+      // theme: ThemeData(primaryColor: Colors.white),
     );
   }
 }
