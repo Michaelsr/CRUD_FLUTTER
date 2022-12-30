@@ -1,4 +1,7 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginPages extends StatelessWidget {
   const LoginPages({super.key});
@@ -19,8 +22,10 @@ class LoginPages extends StatelessWidget {
     // final size = MediaQuery.of(context).size;
     final fondoMorado = Container(
       decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/lluvia.png"), fit: BoxFit.cover)),
+        // image: DecorationImage(
+        //     image: AssetImage("assets/lluvia.png"), fit: BoxFit.cover),
+        color: Color.fromARGB(255, 3, 69, 156),
+      ),
     );
 
     return Stack(
@@ -32,18 +37,18 @@ class LoginPages extends StatelessWidget {
             children: const <Widget>[
               Icon(
                 Icons.apartment_sharp,
-                color: Colors.blue,
+                color: Colors.white,
                 size: 100.0,
               ),
               SizedBox(
                 height: 10.0,
                 width: double.infinity,
               ),
-              // Text(
-              //   'Clinica Sicuani',
-              //   style: TextStyle(
-              //       color: Color.fromARGB(255, 15, 55, 163), fontSize: 25.0),
-              // ),
+              Text(
+                'Clinica Sicuani',
+                style: TextStyle(
+                    color: Color.fromARGB(255, 255, 255, 255), fontSize: 25.0),
+              ),
             ],
           ),
         )
@@ -75,7 +80,7 @@ class LoginPages extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5.0),
                 boxShadow: const <BoxShadow>[
                   BoxShadow(
-                    color: Color.fromARGB(148, 85, 83, 83),
+                    color: Color.fromARGB(255, 9, 88, 192),
                     blurRadius: 3.0,
                     offset: Offset(0.0, 5.0),
                     spreadRadius: 3.0,
@@ -90,74 +95,73 @@ class LoginPages extends StatelessWidget {
                     color: Color.fromARGB(221, 255, 255, 255),
                   ),
                 ),
-                const Text(
-                  "Clinica Sicuani",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Color.fromARGB(221, 255, 255, 255),
-                  ),
-                ),
-                const SizedBox(
-                  height: 60.0,
-                ),
-                _crearEmail(),
                 const SizedBox(
                   height: 30.0,
                 ),
-                _crearPassword(),
-                const SizedBox(
-                  height: 30.0,
-                ),
-                // _crearBotton(bloc),
+                _BottonGoogle(),
               ],
             ),
-          ),
-          const Text("Olvido la Contraseña?"),
-          const SizedBox(
-            height: 100.0,
           ),
         ],
       ),
     );
   }
 
-  Widget _crearEmail() {
-    return StreamBuilder(
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: const TextField(
-            decoration: InputDecoration(
-              icon: Icon(
-                Icons.alternate_email,
-                color: Colors.white,
-              ),
-              hintText: "Ejemplo@correo.com",
-              labelText: "Correo",
-            ),
-          ),
-        );
-      },
-    );
-  }
+  // Widget _crearEmail() {
+  //   return StreamBuilder(
+  //     builder: (BuildContext context, AsyncSnapshot snapshot) {
+  //       return Container(
+  //         padding: const EdgeInsets.symmetric(horizontal: 20.0),
+  //         child: const TextField(
+  //           decoration: InputDecoration(
+  //             icon: Icon(
+  //               Icons.alternate_email,
+  //               color: Colors.white,
+  //             ),
+  //             hintText: "Ejemplo@correo.com",
+  //             labelText: "Correo",
+  //           ),
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
-  Widget _crearPassword() {
-    return StreamBuilder(
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: const TextField(
-            obscureText: true,
-            decoration: InputDecoration(
-              icon: Icon(
-                Icons.lock,
-                color: Colors.white,
-              ),
-              labelText: "Password",
-            ),
-          ),
-        );
-      },
+  // Widget _crearPassword() {
+  //   return StreamBuilder(
+  //     builder: (BuildContext context, AsyncSnapshot snapshot) {
+  //       return Container(
+  //         padding: const EdgeInsets.symmetric(horizontal: 20.0),
+  //         child: const TextField(
+  //           obscureText: true,
+  //           decoration: InputDecoration(
+  //             icon: Icon(
+  //               Icons.lock,
+  //               color: Colors.white,
+  //             ),
+  //             labelText: "Password",
+  //           ),
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
+
+  Widget _BottonGoogle() {
+    return Center(
+      child: FloatingActionButton.extended(
+        onPressed: () {
+          GoogleSignIn().signIn();
+        },
+        icon: Image.asset(
+          'assets/google.jpg',
+          height: 31,
+          width: 31,
+        ),
+        label: const Text('Sing in with Google'),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+      ),
     );
   }
 }

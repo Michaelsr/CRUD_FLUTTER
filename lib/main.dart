@@ -1,3 +1,4 @@
+// @dart=2.18
 import 'package:flutter/material.dart';
 import 'package:flutter_crud/src/pages/boleta_pages.dart';
 import 'package:flutter_crud/src/pages/login_pages.dart';
