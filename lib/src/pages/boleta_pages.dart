@@ -144,6 +144,7 @@ class _BoletaPagesState extends State<BoletaPages> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: const Color.fromARGB(255, 9, 88, 192),
         title: const Text('Boleta'),
       ),
