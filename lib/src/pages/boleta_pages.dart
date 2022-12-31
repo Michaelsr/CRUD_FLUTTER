@@ -130,7 +130,9 @@ class _BoletaPagesState extends State<BoletaPages> {
   }
 
   // Delete an item
-  void _deleteItem(int id) async {
+  void _deleteItem(
+    int id,
+  ) async {
     await SQLHelper.deleteItem(id);
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Text('Successfully deleted a journal!'),
@@ -142,8 +144,10 @@ class _BoletaPagesState extends State<BoletaPages> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 9, 88, 192),
         title: const Text('Boleta'),
       ),
+      backgroundColor: const Color.fromARGB(255, 4, 42, 92),
       body: _isLoading
           ? const Center(
               child: CircularProgressIndicator(),
@@ -151,21 +155,29 @@ class _BoletaPagesState extends State<BoletaPages> {
           : ListView.builder(
               itemCount: _journals.length,
               itemBuilder: (context, index) => Card(
-                color: Colors.orange[200],
+                color: const Color.fromARGB(255, 64, 141, 241),
                 margin: const EdgeInsets.all(15),
                 child: ListTile(
-                    title: Text(_journals[index]['nombre']),
-                    subtitle: Text(_journals[index]['valor']),
+                    title: Text(
+                      _journals[index]['nombre'],
+                    ),
+                    textColor: Colors.white,
+                    subtitle: Text(
+                      // ignore: prefer_interpolation_to_compose_strings
+                      "S/." + _journals[index]['valor'],
+                    ),
                     trailing: SizedBox(
                       width: 100,
                       child: Row(
                         children: [
                           IconButton(
+                            color: Colors.white,
                             icon: const Icon(Icons.edit),
                             onPressed: () =>
                                 _showForm(_journals[index]['id_boleta']),
                           ),
                           IconButton(
+                            color: Colors.white,
                             icon: const Icon(Icons.delete),
                             onPressed: () =>
                                 _deleteItem(_journals[index]['id_boleta']),

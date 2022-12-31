@@ -120,7 +120,7 @@ class _LoginPagesState extends State<LoginPages> {
           final googleUser = await googleSignIn.signIn();
           if (googleUser != null) {
             // Navegar a la pantalla de inicio
-            Navigator.pushNamed(context, 'menu');
+            Navigator.pushNamed(context, 'boleta');
           }
         },
         icon: Image.asset(

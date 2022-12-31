@@ -21,11 +21,13 @@ class MyApp extends StatelessWidget {
       initialRoute: 'login',
       routes: {
         'login': (context) => const LoginPages(),
-        'menu': (context) => MenuPages(),
+        'menu': (context) => const MenuPages(),
         'boleta': (context) => const BoletaPages(),
         'tratamiento': (context) => const TratamientoPages(),
       },
-      // theme: ThemeData(primaryColor: Colors.white),
+      theme: ThemeData(
+        primaryColor: const Color.fromARGB(255, 9, 88, 192),
+      ),
     );
   }
 }
