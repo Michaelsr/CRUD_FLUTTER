@@ -2,10 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_crud/src/controller/login_controller.dart';
+import 'package:get/get.dart';
 
 class LoginPages extends StatelessWidget {
-  const LoginPages({super.key});
-
+  LoginPages({super.key});
+  final controller = Get.put(LoginController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,7 +100,7 @@ class LoginPages extends StatelessWidget {
                 const SizedBox(
                   height: 30.0,
                 ),
-                _BottonGoogle(),
+                _BottonGoogle(context),
               ],
             ),
           ),
@@ -147,11 +149,12 @@ class LoginPages extends StatelessWidget {
   //   );
   // }
 
-  Widget _BottonGoogle() {
+  Widget _BottonGoogle(BuildContext context) {
     return Center(
       child: FloatingActionButton.extended(
         onPressed: () {
-          GoogleSignIn().signIn();
+          controller.login();
+          Navigator.pushNamed(context, 'menu');
         },
         icon: Image.asset(
           'assets/google.jpg',

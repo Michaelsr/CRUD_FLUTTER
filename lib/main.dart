@@ -18,10 +18,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      initialRoute: 'menu',
+      initialRoute: 'login',
       routes: {
-        'login': (context) => const LoginPages(),
-        'menu': (context) => const MenuPages(),
+        'login': (context) => LoginPages(),
+        'menu': (context) => MenuPages(),
         'boleta': (context) => const BoletaPages(),
         'tratamiento': (context) => const TratamientoPages(),
       },
