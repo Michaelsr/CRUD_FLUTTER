@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       initialRoute: 'login',
       routes: {
-        'login': (context) => LoginPages(),
+        'login': (context) => const LoginPages(),
         'menu': (context) => MenuPages(),
         'boleta': (context) => const BoletaPages(),
         'tratamiento': (context) => const TratamientoPages(),

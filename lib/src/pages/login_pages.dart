@@ -2,12 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter_crud/src/controller/login_controller.dart';
-import 'package:get/get.dart';
 
-class LoginPages extends StatelessWidget {
-  LoginPages({super.key});
-  final controller = Get.put(LoginController());
+class LoginPages extends StatefulWidget {
+  const LoginPages({super.key});
+
+  @override
+  State<LoginPages> createState() => _LoginPagesState();
+}
+
+class _LoginPagesState extends State<LoginPages> {
+  final googleSignIn = GoogleSignIn();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,52 +113,15 @@ class LoginPages extends StatelessWidget {
     );
   }
 
-  // Widget _crearEmail() {
-  //   return StreamBuilder(
-  //     builder: (BuildContext context, AsyncSnapshot snapshot) {
-  //       return Container(
-  //         padding: const EdgeInsets.symmetric(horizontal: 20.0),
-  //         child: const TextField(
-  //           decoration: InputDecoration(
-  //             icon: Icon(
-  //               Icons.alternate_email,
-  //               color: Colors.white,
-  //             ),
-  //             hintText: "Ejemplo@correo.com",
-  //             labelText: "Correo",
-  //           ),
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
-
-  // Widget _crearPassword() {
-  //   return StreamBuilder(
-  //     builder: (BuildContext context, AsyncSnapshot snapshot) {
-  //       return Container(
-  //         padding: const EdgeInsets.symmetric(horizontal: 20.0),
-  //         child: const TextField(
-  //           obscureText: true,
-  //           decoration: InputDecoration(
-  //             icon: Icon(
-  //               Icons.lock,
-  //               color: Colors.white,
-  //             ),
-  //             labelText: "Password",
-  //           ),
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
-
   Widget _BottonGoogle(BuildContext context) {
     return Center(
       child: FloatingActionButton.extended(
-        onPressed: () {
-          controller.login();
-          Navigator.pushNamed(context, 'menu');
+        onPressed: () async {
+          final googleUser = await googleSignIn.signIn();
+          if (googleUser != null) {
+            // Navegar a la pantalla de inicio
+            Navigator.pushNamed(context, 'menu');
+          }
         },
         icon: Image.asset(
           'assets/google.jpg',
