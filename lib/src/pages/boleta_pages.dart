@@ -151,6 +151,7 @@ class _BoletaPagesState extends State<BoletaPages> {
         title: const Text('Boleta'),
       ),
       drawer: Drawer(
+        backgroundColor: const Color.fromARGB(255, 9, 88, 192),
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
@@ -162,6 +163,7 @@ class _BoletaPagesState extends State<BoletaPages> {
             ),
             ListTile(
               title: const Text('Boleta'),
+              textColor: Colors.white,
               onTap: () {
                 // Actualiza el estado de la aplicación
                 // ...
@@ -171,6 +173,7 @@ class _BoletaPagesState extends State<BoletaPages> {
             ),
             ListTile(
               title: const Text('Tratamiento'),
+              textColor: Colors.white,
               onTap: () {
                 // // Actualiza el estado de la aplicación
                 // ...
@@ -201,10 +204,11 @@ class _BoletaPagesState extends State<BoletaPages> {
                       "S/." + _journals[index]['valor'],
                     ),
                     trailing: SizedBox(
-                      width: 100,
+                      width: 150,
                       child: Row(
                         children: [
                           IconButton(
+                            padding: const EdgeInsets.all(0.0),
                             color: Colors.white,
                             icon: const Icon(Icons.edit),
                             onPressed: () =>
@@ -213,6 +217,12 @@ class _BoletaPagesState extends State<BoletaPages> {
                           IconButton(
                             color: Colors.white,
                             icon: const Icon(Icons.delete),
+                            onPressed: () =>
+                                _deleteItem(_journals[index]['id_boleta']),
+                          ),
+                          IconButton(
+                            color: Colors.white,
+                            icon: const Icon(Icons.print_rounded),
                             onPressed: () =>
                                 _deleteItem(_journals[index]['id_boleta']),
                           ),
