@@ -106,6 +106,7 @@ class _BoletaPagesState extends State<BoletaPages> {
                       _valorController.text = '';
 
                       // Close the bottom sheet
+                      // ignore: use_build_context_synchronously
                       Navigator.of(context).pop();
                     },
                     child: Text(id == null ? 'Create New' : 'Update'),
@@ -134,6 +135,7 @@ class _BoletaPagesState extends State<BoletaPages> {
     int id,
   ) async {
     await SQLHelper.deleteItem(id);
+    // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Text('Successfully deleted a journal!'),
     ));
@@ -147,6 +149,12 @@ class _BoletaPagesState extends State<BoletaPages> {
         automaticallyImplyLeading: false,
         backgroundColor: const Color.fromARGB(255, 9, 88, 192),
         title: const Text('Boleta'),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () {},
+          ),
+        ],
       ),
       backgroundColor: const Color.fromARGB(255, 4, 42, 92),
       body: _isLoading

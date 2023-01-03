@@ -120,6 +120,7 @@ class _LoginPagesState extends State<LoginPages> {
           final googleUser = await googleSignIn.signIn();
           if (googleUser != null) {
             // Navegar a la pantalla de inicio
+            // ignore: use_build_context_synchronously
             Navigator.pushNamed(context, 'boleta');
           }
         },
