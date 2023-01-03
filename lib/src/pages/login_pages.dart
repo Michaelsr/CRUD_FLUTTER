@@ -42,7 +42,7 @@ class _LoginPagesState extends State<LoginPages> {
           child: Column(
             children: const <Widget>[
               Icon(
-                Icons.apartment_sharp,
+                Icons.health_and_safety_outlined,
                 color: Colors.white,
                 size: 100.0,
               ),
@@ -53,7 +53,10 @@ class _LoginPagesState extends State<LoginPages> {
               Text(
                 'Clinica Sicuani',
                 style: TextStyle(
-                    color: Color.fromARGB(255, 255, 255, 255), fontSize: 25.0),
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.w900,
+                ),
               ),
             ],
           ),
@@ -82,7 +85,6 @@ class _LoginPagesState extends State<LoginPages> {
               vertical: 50.0,
             ),
             decoration: BoxDecoration(
-                // color: Color.fromARGB(255, 253, 253, 1),
                 borderRadius: BorderRadius.circular(5.0),
                 boxShadow: const <BoxShadow>[
                   BoxShadow(
@@ -95,9 +97,10 @@ class _LoginPagesState extends State<LoginPages> {
             child: Column(
               children: <Widget>[
                 const Text(
-                  "Login",
+                  "Menu de Acceso",
                   style: TextStyle(
-                    fontSize: 20.0,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 25.0,
                     color: Color.fromARGB(221, 255, 255, 255),
                   ),
                 ),
@@ -156,7 +159,7 @@ class _LoginPagesState extends State<LoginPages> {
           height: 31,
           width: 31,
         ),
-        label: const Text('Inicio con Facebook'),
+        label: const Text('Inicia con Facebook'),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),

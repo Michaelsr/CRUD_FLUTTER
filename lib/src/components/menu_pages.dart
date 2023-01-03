@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-class MenuPages extends StatelessWidget {
+class MenuPages extends StatefulWidget {
   const MenuPages({super.key});
 
+  @override
+  State<MenuPages> createState() => _MenuPagesState();
+}
+
+class _MenuPagesState extends State<MenuPages> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -12,12 +17,14 @@ class MenuPages extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            const DrawerHeader(
+            const UserAccountsDrawerHeader(
+              accountName: Text("data"),
+              accountEmail: Text("demaata"),
+              currentAccountPicture: CircleAvatar(
+                backgroundColor: Colors.amber,
+              ),
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 64, 141, 241),
-              ),
-              child: CircleAvatar(
-                backgroundColor: Colors.amber,
               ),
             ),
             ListTile(
