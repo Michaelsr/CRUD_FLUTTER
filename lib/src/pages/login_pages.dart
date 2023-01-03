@@ -105,6 +105,10 @@ class _LoginPagesState extends State<LoginPages> {
                   height: 30.0,
                 ),
                 _BottonGoogle(context),
+                const SizedBox(
+                  height: 30.0,
+                ),
+                _BottonFb(context),
               ],
             ),
           ),
@@ -129,7 +133,30 @@ class _LoginPagesState extends State<LoginPages> {
           height: 31,
           width: 31,
         ),
-        label: const Text('Sing in with Google'),
+        label: const Text('Inicia con Google'),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+      ),
+    );
+  }
+
+  Widget _BottonFb(BuildContext context) {
+    return Center(
+      child: FloatingActionButton.extended(
+        onPressed: () async {
+          final googleUser = await googleSignIn.signIn();
+          if (googleUser != null) {
+            // Navegar a la pantalla de inicio
+            // ignore: use_build_context_synchronously
+            Navigator.pushNamed(context, 'boleta');
+          }
+        },
+        icon: Image.asset(
+          'assets/fb.png',
+          height: 31,
+          width: 31,
+        ),
+        label: const Text('Inicio con Facebook'),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
       ),
