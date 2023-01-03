@@ -149,12 +149,37 @@ class _BoletaPagesState extends State<BoletaPages> {
         automaticallyImplyLeading: false,
         backgroundColor: const Color.fromARGB(255, 9, 88, 192),
         title: const Text('Boleta'),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () {},
-          ),
-        ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 64, 141, 241),
+              ),
+              child: Text('Menu email'),
+            ),
+            ListTile(
+              title: const Text('Boleta'),
+              onTap: () {
+                // Actualiza el estado de la aplicación
+                // ...
+                // Luego cierra el drawer
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('Tratamiento'),
+              onTap: () {
+                // // Actualiza el estado de la aplicación
+                // ...
+                // Luego cierra el drawer
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
       backgroundColor: const Color.fromARGB(255, 4, 42, 92),
       body: _isLoading
