@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_crud/src/components/menu_pages.dart';
 import '../db/sql_helper.dart';
 
 class BoletaPages extends StatefulWidget {
@@ -48,72 +49,73 @@ class _BoletaPagesState extends State<BoletaPages> {
     }
 
     showModalBottomSheet(
-        context: context,
-        elevation: 5,
-        isScrollControlled: true,
-        builder: (_) => Container(
-              padding: EdgeInsets.only(
-                top: 15,
-                left: 15,
-                right: 15,
-                // this will prevent the soft keyboard from covering the text fields
-                bottom: MediaQuery.of(context).viewInsets.bottom + 120,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  TextField(
-                    controller: _nombreController,
-                    decoration: const InputDecoration(hintText: 'Nombre'),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    controller: _tipoController,
-                    decoration: const InputDecoration(hintText: 'Tipo'),
-                  ),
-                  TextField(
-                    controller: _detalleController,
-                    decoration: const InputDecoration(hintText: 'Detalle'),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  TextField(
-                    controller: _valorController,
-                    decoration: const InputDecoration(hintText: 'Valor'),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      // Save new journal
-                      if (id == null) {
-                        await _addItem();
-                      }
+      context: context,
+      elevation: 5,
+      isScrollControlled: true,
+      builder: (_) => Container(
+        padding: EdgeInsets.only(
+          top: 15,
+          left: 15,
+          right: 15,
+          // this will prevent the soft keyboard from covering the text fields
+          bottom: MediaQuery.of(context).viewInsets.bottom + 120,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            TextField(
+              controller: _nombreController,
+              decoration: const InputDecoration(hintText: 'Nombre'),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextField(
+              controller: _tipoController,
+              decoration: const InputDecoration(hintText: 'Tipo'),
+            ),
+            TextField(
+              controller: _detalleController,
+              decoration: const InputDecoration(hintText: 'Detalle'),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextField(
+              controller: _valorController,
+              decoration: const InputDecoration(hintText: 'Valor'),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                // Save new journal
+                if (id == null) {
+                  await _addItem();
+                }
 
-                      if (id != null) {
-                        await _updateItem(id);
-                      }
+                if (id != null) {
+                  await _updateItem(id);
+                }
 
-                      // Clear the text fields
-                      _nombreController.text = '';
-                      _tipoController.text = '';
-                      _detalleController.text = '';
-                      _valorController.text = '';
+                // Clear the text fields
+                _nombreController.text = '';
+                _tipoController.text = '';
+                _detalleController.text = '';
+                _valorController.text = '';
 
-                      // Close the bottom sheet
-                      // ignore: use_build_context_synchronously
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(id == null ? 'Create New' : 'Update'),
-                  )
-                ],
-              ),
-            ));
+                // Close the bottom sheet
+                // ignore: use_build_context_synchronously
+                Navigator.of(context).pop();
+              },
+              child: Text(id == null ? 'Guardar' : 'Actualizar'),
+            )
+          ],
+        ),
+      ),
+    );
   }
 
 // Insert a new journal to the database
@@ -137,7 +139,7 @@ class _BoletaPagesState extends State<BoletaPages> {
     await SQLHelper.deleteItem(id);
     // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      content: Text('Successfully deleted a journal!'),
+      content: Text('Borrado exitoso'),
     ));
     _refreshJournals();
   }
@@ -146,44 +148,11 @@ class _BoletaPagesState extends State<BoletaPages> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        // automaticallyImplyLeading: false,
         backgroundColor: const Color.fromARGB(255, 9, 88, 192),
         title: const Text('Boleta'),
       ),
-      drawer: Drawer(
-        backgroundColor: const Color.fromARGB(255, 9, 88, 192),
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 64, 141, 241),
-              ),
-              child: Text('Menu email'),
-            ),
-            ListTile(
-              title: const Text('Boleta'),
-              textColor: Colors.white,
-              onTap: () {
-                // Actualiza el estado de la aplicación
-                // ...
-                // Luego cierra el drawer
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Tratamiento'),
-              textColor: Colors.white,
-              onTap: () {
-                // // Actualiza el estado de la aplicación
-                // ...
-                // Luego cierra el drawer
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: const MenuPages(),
       backgroundColor: const Color.fromARGB(255, 4, 42, 92),
       body: _isLoading
           ? const Center(
@@ -224,7 +193,7 @@ class _BoletaPagesState extends State<BoletaPages> {
                             color: Colors.white,
                             icon: const Icon(Icons.print_rounded),
                             onPressed: () =>
-                                _deleteItem(_journals[index]['id_boleta']),
+                                _showForm(_journals[index]['id_boleta']),
                           ),
                         ],
                       ),

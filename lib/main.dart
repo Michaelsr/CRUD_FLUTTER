@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_crud/src/pages/boleta_pages.dart';
 import 'package:flutter_crud/src/pages/login_pages.dart';
-import 'package:flutter_crud/src/pages/menu_pages.dart';
 import 'package:flutter_crud/src/pages/tratamiento.dart';
 
 void main() {
@@ -21,7 +20,6 @@ class MyApp extends StatelessWidget {
       initialRoute: 'boleta',
       routes: {
         'login': (context) => const LoginPages(),
-        'menu': (context) => const MenuPages(),
         'boleta': (context) => const BoletaPages(),
         'tratamiento': (context) => const TratamientoPages(),
       },
