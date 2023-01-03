@@ -21,6 +21,7 @@ class SQLHelper {
         dni TEXT,
         telefono TEXT,
         detalle TEXT,
+        total TEXT,
         createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
       )
       """);
@@ -29,7 +30,7 @@ class SQLHelper {
   static Future<sql.Database> db() async {
     return sql.openDatabase(
       'clinica.db',
-      version: 1,
+      version: 2,
       onCreate: (sql.Database database, int version) async {
         await createTables(database);
       },
@@ -98,7 +99,7 @@ class SQLHelper {
 
   // Create new tratamiento
   static Future<int> createTrata(String nombre, String peso, String edad,
-      String dni, String telefono, String detalle) async {
+      String dni, String telefono, String detalle, String total) async {
     final db = await SQLHelper.db();
 
     final data = {
@@ -108,6 +109,7 @@ class SQLHelper {
       'dni': dni,
       'telefono': telefono,
       'detalle': detalle,
+      'total': total,
     };
     final id = await db.insert('tratamiento', data,
         conflictAlgorithm: sql.ConflictAlgorithm.replace);
@@ -129,8 +131,16 @@ class SQLHelper {
   }
 
   // Update an tratamiento by id
-  static Future<int> updateTrata(int id, String nombre, String? peso,
-      String? edad, String? dni, String? telefono, String? detalle) async {
+  static Future<int> updateTrata(
+    int id,
+    String nombre,
+    String? peso,
+    String? edad,
+    String? dni,
+    String? telefono,
+    String? detalle,
+    String? total,
+  ) async {
     final db = await SQLHelper.db();
 
     final data = {
@@ -140,6 +150,7 @@ class SQLHelper {
       'dni': dni,
       'telefono': telefono,
       'detalle': detalle,
+      'total': total,
       'createdAt': DateTime.now().toString()
     };
 
