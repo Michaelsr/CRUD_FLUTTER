@@ -93,4 +93,69 @@ class SQLHelper {
       debugPrint("Something went wrong when deleting an item: $err");
     }
   }
+
+// crud tratemiento
+
+  // Create new tratamiento
+  static Future<int> createTrata(String nombre, String peso, String edad,
+      String dni, String telefono, String detalle) async {
+    final db = await SQLHelper.db();
+
+    final data = {
+      'nombre': nombre,
+      'peso': peso,
+      'edad': edad,
+      'dni': dni,
+      'telefono': telefono,
+      'detalle': detalle,
+    };
+    final id = await db.insert('tratamiento', data,
+        conflictAlgorithm: sql.ConflictAlgorithm.replace);
+    return id;
+  }
+
+  // Read all tratamiento
+  static Future<List<Map<String, dynamic>>> getTrata() async {
+    final db = await SQLHelper.db();
+    return db.query('tratamiento', orderBy: "id_tratamiento");
+  }
+
+  // Read a single tratamiento by id
+  // The app doesn't use this method but I put here in case you want to see it
+  static Future<List<Map<String, dynamic>>> getTratas(int id) async {
+    final db = await SQLHelper.db();
+    return db.query('tratamiento',
+        where: "id_tratamiento = ?", whereArgs: [id], limit: 1);
+  }
+
+  // Update an tratamiento by id
+  static Future<int> updateTrata(int id, String nombre, String? peso,
+      String? edad, String? dni, String? telefono, String? detalle) async {
+    final db = await SQLHelper.db();
+
+    final data = {
+      'nombre': nombre,
+      'peso': peso,
+      'edad': edad,
+      'dni': dni,
+      'telefono': telefono,
+      'detalle': detalle,
+      'createdAt': DateTime.now().toString()
+    };
+
+    final result = await db.update('tratamiento', data,
+        where: "id_tratamiento = ?", whereArgs: [id]);
+    return result;
+  }
+
+  // Delete tratamiento
+  static Future<void> deleteTrata(int id) async {
+    final db = await SQLHelper.db();
+    try {
+      await db
+          .delete("tratamiento", where: "id_tratamiento = ?", whereArgs: [id]);
+    } catch (err) {
+      debugPrint("Something went wrong when deleting an item: $err");
+    }
+  }
 }

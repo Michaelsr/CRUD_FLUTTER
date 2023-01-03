@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_crud/src/components/menu_pages.dart';
-import '../db/sql_helper.dart';
+import '../db/db.dart';
 
 class BoletaPages extends StatefulWidget {
   const BoletaPages({super.key});
